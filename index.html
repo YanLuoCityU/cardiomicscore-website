@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-based multiomics profiling for personalized prediction of cardiovascular disease: A prospective UK Biobank study</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="title">
+            AI-based multiomics profiling for personalized prediction of cardiovascular disease: A prospective UK Biobank study
+        </div>
+        <div class="author">
+            Author: Yan Luo, Nan Zhang, Jiannan Yang, Mengyao Cui, Kelvin K.F. Tsoi, Gregory Y.H. Lip, Tong Liu, Qingpeng Zhang
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('personalized')">Personalized Risk Estimator</div>
+            <div class="tab" onclick="switchTab('population')">Populational Predictive Performance</div>
+        </div>
+        
+        <div id="personalized" class="tab-content active">
+            <div class="instructions">
+                <h2>Instructions</h2>
+                <p>This section shows the personalized cardiovascular disease risk estimator. Please select disease and fill out all fields to calculate risk.</p>
+            </div>
+
+        <form id="risk-calculator-form">
+            <div class="form-group">
+                <label class="form-label">Select Disease:</label>
+                <select class="form-control" id="disease-select" name="disease">
+                    <option selected>Coronary artery disease</option>
+                    <option>Stroke</option>
+                    <option>Heart failure</option>
+                    <option>Atrial fibrillation</option>
+                    <option>Peripheral artery disease</option>
+                    <option>Venous thromboembolism</option>
+                </select>
+            </div>
+
+            <div class="form-container"> 
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label"> Age (years) </div>
+                        <input type="number" id="age" class="form-control" min="39" max="70" value="55">
+                        <div class="form-hint">Age must be between 39-70</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            Sex
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option selected">Male</div>
+                            <div class="button-option">Female</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            Ethnicity 
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option selected" data-value="0">White</div>
+                            <div class="button-option" data-value="2">Black</div>
+                            <div class="button-option" data-value="1">Asian</div>
+                            <div class="button-option" data-value="3">Others</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            Townsend Deprivation Index (Percentile)
+                            <div class="info-tooltip">
+                                <span class="info-icon">i</span>
+                                <span class="tooltip-text">Measure of material deprivation within a population, higher values indicate greater deprivation.</span>
+                            </div>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="townsend" min="1" max="100" step="1" value="50">
+                            <div>Value: <span id="townsend-value">50</span></div>
+                        </div>
+                    </div>
+                </div>    
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label"> Current Smoking </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Daily Alcohol Intake </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> 
+                            Healthy Sleep
+                            <div class="info-tooltip">
+                                <span class="info-icon">i</span>
+                                <span class="tooltip-text">Sleep duration ranging between 7 and 9 hours per night.</span>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option selected" data-value="1">Yes</div>
+                            <div class="button-option" data-value="0">No</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">    
+                    <div class="form-group">
+                        <div class="form-label"> 
+                            Physical activity
+                            <div class="info-tooltip">
+                                <span class="info-icon">i</span>
+                                <span class="tooltip-text">At least 150 minutes of walking or moderate activity per week or 75 minutes of vigorous activity (2017 UK Physical activity guidelines).</span>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option selected" data-value="1">Yes</div>
+                            <div class="button-option" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> 
+                            Healthy diet
+                            <div class="info-tooltip">
+                                <span class="info-icon">i</span>
+                                <span class="tooltip-text">
+                                    At least 4 of the following 7 criteria:
+                                    <ul>
+                                        <li>Vegetables: ≥3 servings/day;</li>
+                                        <li>Fruits: ≥3 servings/day;</li>
+                                        <li>Fish: ≥2 servings/week;</li>
+                                        <li>Processed meats: ≤1 serving/week;</li>
+                                        <li>Unprocessed red meats: ≤1.5 servings/week;</li>
+                                        <li>Whole grains: ≥3 servings/day;</li>
+                                        <li>Refined grains: ≤1.5 servings/day.</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option selected" data-value="1">Yes</div>
+                            <div class="button-option" data-value="0">No</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-label"> 
+                            Social connection
+                            <div class="info-tooltip">
+                                <span class="info-icon">i</span>
+                                <span class="tooltip-text">
+                                    No more than one of the following criteria:
+                                    <ul>
+                                        <li>Living alone;</li>
+                                        <li>Friends and family visit less than once a month;</li>
+                                        <li>No participation in social activities at least weekly.</li>
+                                    </ul>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option selected" data-value="1">Yes</div>
+                            <div class="button-option" data-value="0">No</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label">
+                            Family History of Heart Disease
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            Family History of Stroke
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            Family History of Hypertension
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">
+                            Family History of Diabetes
+                        </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label"> History of Hypertension </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> History of Diabetes </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Lipid-lowering Medication </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Antihypertensive Medication </div>
+                        <div class="button-group">
+                            <div class="button-option" data-value="1">Yes</div>
+                            <div class="button-option selected" data-value="0">No</div>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label"> Systolic Blood Pressure (mmHg) </div>
+                        <input type="number" id="sbp" class="form-control" value="120">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Diastolic Blood Pressure (mmHg) </div>
+                        <input type="number" id="dbp" class="form-control" value="80">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Height (cm) </div>
+                        <input type="number" id="height" class="form-control" value="175">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Weight (kg) </div>
+                        <input type="number" id="weight" class="form-control" value="70">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Waist Circumference (cm) </div>
+                        <input type="number" id="waist_cir" class="form-control" value="85">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Waist-Hip Ratio </div>
+                        <input type="number" id="waist_hip_ratio" class="form-control" step="0.01" value="0.9">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Body Mass Index (kg/m^2) </div>
+                        <input type="number" id="bmi" class="form-control" step="0.1" value="22.9">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label"> Leukocyte Count (10^9 cells/L) </div>
+                        <input type="number" id="wbc" class="form-control" step="0.01" value="7.5">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Lymphocyte Count (10^9 cells/L) </div>
+                        <input type="number" id="lc" class="form-control" step="0.01" value="2.5">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Monocyte Count (10^9 cells/L) </div>
+                        <input type="number" id="mc" class="form-control" step="0.01" value="0.5">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label"> Neutrophill Count (10^9 cells/L) </div>
+                        <input type="number" id="nc" class="form-control" step="0.01" value="4.0">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Eosinophill Count (10^9 cells/L) </div>
+                        <input type="number" id="eos" class="form-control" step="0.01" value="0.2">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Basophill Count (10^9 cells/L) </div>
+                        <input type="number" id="baso" class="form-control" step="0.01" value="0.05">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label"> Platelet Count (10^9 cells/L) </div>
+                        <input type="number" id="plt" class="form-control" step="0.01" value="250">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Haematocrit (%) </div>
+                        <input type="number" id="hct" class="form-control" step="0.1" value="45">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label"> Haemoglobin (g/dL) </div>
+                        <input type="number" id="hb" class="form-control" step="0.1" value="15">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="form-label">Polygenic Risk Score (Percentile)</div>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="prs" min="1" max="100" step="1" value="50">
+                            <div>Value: <span id="prs-value">50</span></div>
+                        </div> 
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">MetScore (Percentile)</div>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="metscore" min="1" max="100" step="1" value="50">
+                            <div>Value: <span id="metscore-value">50</span></div>
+                        </div> 
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label">ProScore (Percentile)</div>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="proscore" min="1" max="100" step="1" value="50">
+                            <div>Value: <span id="proscore-value">50</span></div>
+                        </div> 
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="note">
+                <strong>Note:</strong> Townsend Deprivation Index, Polygenic Risk Score, MetScore, and ProScore are relative values. 
+                The values selected by users will be mapped to the corresponding percentiles of the actual population distribution. 
+                Generally, the higher the percentile, the higher the disease risk.
+            </div>
+
+            <button id="calculate-risk-button" class="btn btn-primary" type="button">Calculate Risk</button>
+        </form>
+
+            <div id="risk-results" style="display: none;">
+                <div class="performance-metrics">
+                    <div class="metric-card">
+                        <div class="metric-title">10-Year Risk For <span id="selected-disease-name">Coronary artery disease</span></div>
+                        <div class="metric-value" id="disease-risk">--</div>
+                        <div class="metric-description">Probability of developing <span id="selected-disease-desc">coronary artery disease</span> in the next 10 years</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="population" class="tab-content">
+            <div class="instructions">
+                <h2>Instructions</h2>
+                <p>This section shows the predictive performance of models trained on various combinations of polygenic risk score (PRS), 
+                    MetScore, ProScore, and three predefined clinical predictor sets (i.e., AgeSex, Clin, and PANEL).
+                    Please select cardiovascular disease and predictor.</p>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Select Cardiovascular Disease:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="cvd" value="cad"> Coronary artery disease</label>
+                    <label><input type="checkbox" name="cvd" value="stroke"> Stroke</label>
+                    <label><input type="checkbox" name="cvd" value="hf"> Heart failure</label>
+                    <label><input type="checkbox" name="cvd" value="af"> Atrial fibrillation</label>
+                    <label><input type="checkbox" name="cvd" value="pad"> Peripheral artery disease</label>
+                    <label><input type="checkbox" name="cvd" value="vte"> Venous thromboembolism</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Select Predictor:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="predictor" value="PRS"> PRS </label>
+                    <label><input type="checkbox" name="predictor" value="MetScore"> MetScore </label>
+                    <label><input type="checkbox" name="predictor" value="ProScore"> ProScore </label>
+                    <label><input type="checkbox" name="predictor" value="AgeSex" class="exclusive"> AgeSex </label>
+                    <label><input type="checkbox" name="predictor" value="Clin" class="exclusive"> Clin </label>
+                    <label><input type="checkbox" name="predictor" value="PANEL" class="exclusive"> PANEL </label>
+                </div>
+            </div>
+
+            <button id="generate-results-button" class="btn btn-primary"> Generate Results </button>
+
+            <div class="model-comparison">
+                <h3>Model Performance Comparison</h3>
+                <div class="chart-container">
+                    <div class="chart" id="performance-chart">
+                        </div>
+                </div>
+
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Outcome</th>
+                            <th>C-index</th>
+                            <th>95% Confidence Interval</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-table-body">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="scripts.js"></script>
+</body>
+</html>

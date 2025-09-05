@@ -1,0 +1,338 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.author {
+    color: #bbb;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.btn {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+}
+
+.btn-primary {
+    background-color: #0b0d38;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1a1f6d;
+}
+
+.button-group {
+    display: flex;
+    width: 100%;
+}
+
+.button-option {
+    background-color: #bbb;
+    color: white;
+    cursor: pointer;
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s;
+    border: 1px solid white;
+}
+
+.button-option:first-child {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.button-option:last-child {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.button-option.selected {
+    background-color: #0b0d38c0;
+}
+
+.chart {
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+}
+
+.chart-container {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: auto;
+    padding: 10px;
+    width: 90%;
+    /* CORRECTED: Set a fixed height and universal overflow property */
+    height: 600px;      /* Give the container a fixed height */
+    overflow: auto;     /* This will add scrollbars in ANY direction when content overflows */
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-group label {
+    box-sizing: border-box;
+    padding: 5px;
+    width: 33.33%;
+}
+
+.content {
+    margin-left: 70px;
+    padding: 20px;
+}
+
+.disclaimer {
+    color: #bbb;
+    font-size: 12px;
+}
+
+.form-container {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
+    min-width: 300px;
+    padding-right: 15px;
+}
+
+.form-hint {
+    color: #777;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.form-label {
+    align-items: center;
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.header {
+    background-color: #0b0d38;
+    border-bottom: 2px solid #f44336;
+    color: white;
+    padding: 15px 20px;
+}
+
+.info-icon {
+    align-items: center;
+    background-color: #0b0d38;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    font-size: 12px;
+    height: 16px;
+    justify-content: center;
+    margin-left: 5px;
+    width: 16px;
+}
+
+.info-tooltip {
+    cursor: help;
+    display: inline-block;
+    margin-left: 5px;
+    position: relative;
+}
+
+.info-tooltip .tooltip-text {
+    background-color: #333;
+    border-radius: 6px;
+    bottom: 125%;
+    color: #fff;
+    left: 50%;
+    opacity: 0;
+    padding: 5px;
+    position: absolute;
+    text-align: left;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    visibility: hidden;
+    width: 310px;
+    font-size: 12px;
+    font-weight: normal;
+    z-index: 1;
+}
+
+.info-tooltip:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+}
+
+.instructions {
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 48%;
+}
+
+.metric-description {
+    color: #777;
+    font-size: 12px;
+}
+
+.metric-title {
+    color: #0b0d38;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.metric-value {
+    color: #f44336;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.model-comparison {
+    margin-top: 20px;
+}
+
+.note {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffcc00;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #856404;
+}
+
+.performance-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.results-table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.results-table th, .results-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.results-table th {
+    background-color: #f2f2f2;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.slider {
+    margin: 10px 0;
+    width: 100%;
+}
+
+.slider-container {
+    margin: 10px 0;
+}
+
+.slider-labels {
+    color: #777;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.slider-value {
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.standard-value {
+    color: #007bff;
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.subheader {
+    background-color: #0b0d38;
+    color: white;
+    padding: 5px 20px 15px;
+}
+
+.tab {
+    background-color: #f1f1f1;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 10px 20px;
+}
+
+.tab.active {
+    background-color: white;
+    border-bottom: 1px solid white;
+    border-color: #ddd;
+    font-weight: bold;
+    margin-bottom: -1px;
+}
+
+.tab-content {
+    background-color: white;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: none;
+    padding: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tabs {
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.title {
+    align-items: center;
+    display: flex;
+    font-size: 24px;
+    font-weight: bold;
+}
